@@ -29,11 +29,11 @@ Observable이 Completed 이벤트나 Error 이벤트로 종료된 경우 리소�
 
 
 
+<br>
 
 ### Subscription Disposable을 실행취소에 사용하기
 
 subscribe 메소드가 리턴하는 Disposable을 Subscription Disposable 이라고 함.
-
 Subscription Disposable은 리소스 해제와 실행 취소에 사용됨
 
 ```swift
@@ -49,7 +49,6 @@ disposeBag = DisposeBag()
 ```
 
 새로운 DisposeBag을 만들면, 이전에 있던 DisposeBag이 해제됨. View LifeCycle 등 이용해서 해제하면 됨.
-
 혹은 변수를 Optional 타입으로 만들고 nil을 설정할 수도 있음.
 
 <br>
@@ -86,8 +85,6 @@ Disposed
 
 
 `dispose()` 가 호출되는 즉시 모든 리소스가 해제되므로 더이상 이벤트가 전달되지 않음. 그래서 Next 다음에 Completed 이벤트가 전달되지 않았음.
-
 그러므로 `dispose()` 를 직접적으로 호출하는 것은 가능한 피해야 함. 
-
 만약 특정 시점에 해제해야 한다면 take, until과 같은 메소드를 사용하면 됨.
 
