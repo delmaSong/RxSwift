@@ -9,19 +9,19 @@
 ```swift
 Observable.from([1, 2, 3])
 	.subscribe(onNext: { element in
-    print("Next", element)
-  }, onError: { error in
-    print("Error", error)
-  }, onCompleted: { 
-    print("Completed")
-  }, onDisposed: {					//Observable과 관련된 모든 리소스가 제거된 후에 호출됨, Disposed는 Observable이 전달하는 이벤트가 아님. 리소스가 해제되는 시점에 자동으로 호출될 뿐임. 
-    print("Disposed") 
-  })
+	    print("Next", element)
+	  }, onError: { error in
+	    print("Error", error)
+	  }, onCompleted: { 
+	    print("Completed")
+	  }, onDisposed: { //Observable과 관련된 모든 리소스가 제거된 후에 호출됨, Disposed는 Observable이 전달하는 이벤트가 아님. 리소스가 해제되는 시점에 자동으로 호출될 뿐임. 
+	    print("Disposed") 
+	  })
 
 Observable.from([1, 2, 3])
 	.subscribe {
-    print($0)
-  }		//Completed나 Error를 전달하면서 
+	   print($0)
+	} //Completed나 Error를 전달하면서 리소스는 자동으로 해제됨
 ```
 
 Observable이 Completed 이벤트나 Error 이벤트로 종료된 경우 리소스는 자동으로 해제됨 그래서 리소스를 직접 해제하지 않아도 큰 문제는 없으나 공식 문서에서 직접적으로 해제하는 것을 권장하므로 직접 해제하는 게 좋음. 또한 `dispose()` 를 사용하는 것 보다 DisposeBag을 만들어 사용하는 것이 더 권장됨.
@@ -40,10 +40,10 @@ Subscription Disposable은 리소스 해제와 실행 취소에 사용됨
 var disposeBag = DisposeBag()
 
 Observable.from([1, 2, 3])
-.subscribe {
-  print($0)
-}
-.disposed(by: disposeBag)
+	.subscribe {
+	  print($0)
+	}
+	.disposed(by: disposeBag)
 
 disposeBag = DisposeBag()		
 ```
@@ -60,7 +60,7 @@ disposeBag = DisposeBag()
 // 1초마다 정수를 전달하는 Observable
 let subscription = Observable<Int>.interval(.second(1),
                                             scheduler: MainScheduler.instance)
-									.subscribe(onNext: { element in
+		  .subscribe(onNext: { element in
                     print("Next", element)
                   }, onError: { error in
                     print("Error", error)
