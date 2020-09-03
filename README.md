@@ -30,6 +30,7 @@ RxSwift 스터디를 위한 개인 저장소
 ### 1주차
 
 **평일**
+
 [RxSwift 4시간에 끝내기 시즌0](https://www.youtube.com/watch?v=w5Qmie-GbiA&list=PL03rJBlpwTaAh5zfc8KWALc3ADgugJwjq) 내용을 바탕으로 아래의 내용 공부 및 정리
 
 - Reactive Programming을 사용하게된 배경
@@ -37,6 +38,7 @@ RxSwift 스터디를 위한 개인 저장소
 - 기본적인 Operator
 
 **주말**
+
 [RxSwift 4시간에 끝내기 시즌2](https://www.youtube.com/watch?v=iHKBNYMWd5I&list=PL03rJBlpwTaBrhux_C8RmtWDI_kZSLvdQ) 내용을 바탕으로 아래의 내용 공부 및 정리
 
 - Scheduler
