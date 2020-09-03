@@ -4,7 +4,7 @@
 
 Observable == observable Sequence == Sequence
 
-
+<br>
 
 **Observable**
 
@@ -24,7 +24,6 @@ Observable == observable Sequence == Sequence
 **Observer**
 
 - Observer는 Observable을 감시하다가 전달되는 이벤트를 처리함
-
 - Observable을 감시하는 것을 구독(Subscribe)한다고 표현한다. 그래서 Observer를 Subscriber라고도 표현함
 - Observer가 Observable을 구독하는 시점에 Next 이벤트를 통해 값이 전달되고 이어서 Completed 이벤트가 전달됨
 - Observer가 Observable을 구독하는 방법은 Observable에서 subscribe메소드를 호출하면 됨
@@ -69,28 +68,25 @@ Observable<Int>.create { (observer) -> Disposable in
 ### Observable 구독하기
 
 Observer가 Observable을 구독하는 방법은 Observable에서 subscribe메소드를 호출하면 됨.
-
 Subscribe 메소드는 Observable과 Obserer를 연결함. 두 요소를 연결해야 이벤트가 전달됨. 
 
 ```swift
 let o1 = Observable.from([0, 1])
 
-o1.subscribe {										// 이 메소드가 subscriber
+o1.subscribe {	// 이 메소드가 subscriber
   print($0)
   if let element = $0.element {
-    print(element)								// 전달되는 이벤트 안의 요소만 빼내고 싶을 때 element 속성을 이용함. 
+    print(element)	// 전달되는 이벤트 안의 요소만 빼내고 싶을 때 element 속성을 이용함. 
   }
 }
 
 o1.subscribe(onNext: { element in // 클로저 파라미터로 Next 이벤트에 전달된 요소가 바로 전달되므로 바로 사용 가능
              print(element)		
-})																//개별 이벤트를 별도의 클로저에서 사용하고 싶을 때 이 메소드 사용
+})	//개별 이벤트를 별도의 클로저에서 사용하고 싶을 때 이 메소드 사용
 ```
 
 
 
 Observable은 이벤트가 전달되는 순서를 정의하는데, 실제로 이벤트가 전달되는 시점은 Observer가 구독을 시작한 시점. 
-
 Observer는 동시에 2개 이상의 이벤트를 처리하지 않음. 
-
 Observable은 Observer가 하나의 이벤트를 처리한 후에 이어지는 이벤트를 전달한다. 여러 이벤트를 동시에 전달하지 않는다. 
