@@ -55,9 +55,9 @@ Observable<Int>.create { (observer) -> Disposable in
 
 2. `create` 가 아닌 미리 정의된 다른 연산자를 활용하여 생성
 
-   ```swift
-   Observable.from([0, 1])
-   ```
+```swift
+Observable.from([0, 1])
+```
 
 
 
@@ -68,6 +68,7 @@ Observable<Int>.create { (observer) -> Disposable in
 ### Observable 구독하기
 
 Observer가 Observable을 구독하는 방법은 Observable에서 subscribe메소드를 호출하면 됨.
+
 Subscribe 메소드는 Observable과 Obserer를 연결함. 두 요소를 연결해야 이벤트가 전달됨. 
 
 ```swift
@@ -87,6 +88,8 @@ o1.subscribe(onNext: { element in // 클로저 파라미터로 Next 이벤트에
 
 
 
-Observable은 이벤트가 전달되는 순서를 정의하는데, 실제로 이벤트가 전달되는 시점은 Observer가 구독을 시작한 시점. 
-Observer는 동시에 2개 이상의 이벤트를 처리하지 않음. 
+Observable은 이벤트가 전달되는 순서를 정의하는데, 실제로 이벤트가 전달되는 시점은 Observer가 구독을 시작한 시점.
+
+Observer는 동시에 2개 이상의 이벤트를 처리하지 않음.
+
 Observable은 Observer가 하나의 이벤트를 처리한 후에 이어지는 이벤트를 전달한다. 여러 이벤트를 동시에 전달하지 않는다. 
