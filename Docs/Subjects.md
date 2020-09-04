@@ -25,13 +25,13 @@ let subject = PublishSubject<String>()
 subject.onNext("Hello")
 
 let observer = subject.subscribe { print($0) }
-											.disposed(by: disposeBag)	//아무것도 출력되지 않음
+			.disposed(by: disposeBag)	//아무것도 출력되지 않음
 
 subject.onNext("RxSwift")		// "RxSwift" 출력됨
 subject.onCompleted()
 
 let observer2 = subject.subscribe { print($0) }
-											 .disposed(by: disposeBag)		// subject가 완료된 이후이므로 Completed이벤트만 전달됨
+			.disposed(by: disposeBag)		// subject가 완료된 이후이므로 Completed이벤트만 전달됨
 
 ```
 
@@ -90,7 +90,7 @@ bs2 1
 
 
 
-``` swift
+```swift
 let rs = ReplaySubject<Int>.create(bufferSize: 3)	//#1
 
 (1...10).forEach { rs.onNext($0) }
@@ -134,7 +134,7 @@ AsyncSubject는 Completed 이벤트가 전달되는 시점에야 마지막으로
 let subject = AsyncSubject<Int>()
 
 subject.subscribe { print($0) }
-			 .disposed(by: disposeBag)
+	.disposed(by: disposeBag)
 
 subject.onNext(1)		//전달되지 않음
 subject.onNext(2)		//전달되지 않음
@@ -182,7 +182,7 @@ PublishSubject를 wrapping한 것
 ```swift
 let pRelay = PublishRelay<Int>()
 pRelay.subscribe { print($0) }
-			.disposed(by: disposeBag)
+	.disposed(by: disposeBag)
 
 pRelay.accept(1)
 ```
@@ -204,7 +204,7 @@ let bRelay = BehaviorRelay(value: 1)
 
 bRelay.accept(2)
 bRelay.subscribe { print($0) }	// 가장 최근에 저장된 2가 전달되어 출력됨
-			.disposed(by: disposeBag)
+	.disposed(by: disposeBag)
 
 bRealy.accept(3)
 ```
