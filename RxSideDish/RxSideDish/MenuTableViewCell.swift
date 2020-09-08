@@ -23,12 +23,26 @@ class MenuTableViewCell: UITableViewCell {
     }
     
     private func configure() {
+        configureUI()
+    }
+    
+    private func configureUI() {
         addCancelLine(originalPrice)
+        menuImage.layer.cornerRadius = menuImage.frame.width / 2
+        menuImage.layer.masksToBounds = true
     }
     
     private func addCancelLine(_ label: UILabel) {
         guard let text = label.text else { return }
         let attributedString = NSMutableAttributedString(string: text)
         attributedString.addAttribute(.strikethroughStyle, value: 1, range: NSRange(text)!)
+    }
+    
+    private func configureBadge(_ text: String) {
+        let label = UILabel()
+        label.text = text
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        badgeStack.addArrangedSubview(label)
     }
 }
