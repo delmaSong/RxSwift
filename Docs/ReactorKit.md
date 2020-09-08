@@ -86,7 +86,7 @@ import RxSwift
 
 protocol Reactor {
   associatedtype Action			// 사용자 인터랙션 표현
-  associatedtype Mutation		// 상태를 변경하는 가장 작은 단위
+  associatedtype Mutation		// State를 변경하는 가장 작은 단위
   associatedtype State			// 뷰의 상태 표현
   
   var initialState: State		//가장 첫 상태를 나타냄
@@ -109,9 +109,21 @@ final class UserViewReactor: Reactor {
 }
 ```
 
+비동기 타임에 State가 변경되는 경우가 있는데, Action과 State 사이에 Mutation을 둬서 비동기처리를 함
+
 Action이나 State와 달리 Mutation은 리액터 클래스 밖으로 노출되지 않음. 대신 클래스 내부에서 Action과 State를 연결하는 역할을 수행함.
 
+
+
+<br>
+
+
+
 <img src="https://user-images.githubusercontent.com/40784518/92367805-dd7efd00-f131-11ea-989c-a548a402bbe9.png" width=90%/>
+
+<br>
+
+
 
 ```swift
 /*
