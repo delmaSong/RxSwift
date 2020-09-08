@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="126" id="j9J-ZW-lGF">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuTableViewCell" rowHeight="126" id="j9J-ZW-lGF" customClass="MenuTableViewCell" customModule="RxSideDish" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="126"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j9J-ZW-lGF" id="Kjq-dq-tcq">
@@ -44,28 +44,31 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="GTD-lF-iCp">
-                                                    <rect key="frame" x="125" y="62" width="90" height="20.5"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="GTD-lF-iCp">
+                                                    <rect key="frame" x="125" y="62" width="62.5" height="20.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bd0-ni-usq">
-                                                            <rect key="frame" x="0.0" y="0.0" width="31" height="20.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bd0-ni-usq">
+                                                            <rect key="frame" x="0.0" y="0.0" width="3.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueb-if-h89">
-                                                            <rect key="frame" x="33" y="0.0" width="43.5" height="20.5"/>
+                                                            <rect key="frame" x="5.5" y="0.0" width="43.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                             <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROO-j1-zoG">
-                                                            <rect key="frame" x="78.5" y="0.0" width="11.5" height="20.5"/>
+                                                            <rect key="frame" x="51" y="0.0" width="11.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                             <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="Bd0-ni-usq" firstAttribute="top" secondItem="ueb-if-h89" secondAttribute="top" id="DHG-kY-9UD"/>
+                                                    </constraints>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Z8e-SE-uQo">
                                                     <rect key="frame" x="125" y="86.5" width="33" height="16"/>
@@ -95,6 +98,15 @@
                                                 <constraint firstItem="iyR-Rm-VfU" firstAttribute="top" secondItem="e1P-t3-b3p" secondAttribute="top" constant="4" id="y7h-IK-9RN"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="badgePlaceholder" destination="pDu-Pf-9aO" id="Hdt-rZ-JFw"/>
+                                            <outlet property="badgeStack" destination="Z8e-SE-uQo" id="ias-kR-af6"/>
+                                            <outlet property="discountedPrice" destination="ueb-if-h89" id="R4t-z6-YCu"/>
+                                            <outlet property="menuDescription" destination="tRC-Pt-ddc" id="ttP-LJ-z1s"/>
+                                            <outlet property="menuImage" destination="e1P-t3-b3p" id="efp-9s-oRR"/>
+                                            <outlet property="originalPrice" destination="Bd0-ni-usq" id="cLo-eD-hsw"/>
+                                            <outlet property="title" destination="iyR-Rm-VfU" id="DKa-wy-bxy"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
