@@ -3,7 +3,7 @@
 보통 UI가 업데이트 되는 시점은 Next 이벤트가 전달될 때임. Error 이벤트가 전달되면 구독이 종료되고 더 이상 Next 이벤트가 전달되지 않는다. 그래서 UI를 업데이트 하는 코드는 실행되지 않음. 
 
 1. Error 이벤트가 전달되면 새로운 Observable을 리턴한다 
-2. Error 발생시 Observable을 다시 구독한다
+2. Error 발생시 기존 Observable을 다시 구독한다
 
 의 방법으로 에러를 핸들링함
 
@@ -42,12 +42,12 @@ let recovery = PublishSubject<Int>()
 
 subject.subscribe { print($0) }
 			 .disposed(by:bag)
-subject.onError(MyError.error)		// #1 error가 전달되고 바로 구독이 종료되기 때문에 다른 이벤트는 전달되지 않음
+subject.onError(MyError.error)		//error가 전달되고 바로 구독이 종료되기 때문에 다른 이벤트는 전달되지 않음
 
-subject.catchError{ _ in recovery }
+subject.catchError{ _ in recovery }		//새로운 Observable로 교체
 			 .subscribe{ print($0) }
 			 .disposed(by:bag)
-subject.onError(MyError.error)		// #2 Observable을 새로운 서브젝트(recovery)로 변경해 리턴해서, Error가 전달되지 않음
+subject.onError(MyError.error)		//Observable을 새로운 서브젝트(recovery)로 변경해 리턴해서, Error가 전달되지 않음
 
 subject.onNext(11)		// 전달되지 않음
 recovery.onNext(22)		// 전달됨
@@ -137,7 +137,7 @@ completed
 */
 ```
 
-`retry()` 는 에러가 발생한 즉시 재시도하므로 재시도 시점을 제어하기는 불가능함. 네트워크 요청에서 에러가 발생했다면 정상 응답을 받거나 최대횟수에 도달할때까지 재시도함. 
+`retry()` 는 에러가 발생한 즉시 재시도하므로 재시도 시점을 제어하기는 불가능함. 에러가 발생했다면 정상 응답을 받거나 최대횟수에 도달할때까지 재시도함. 
 
 만약 사용자가 재시도버튼을 탭하는 시점에만 재시도를 하고싶다면? `retryWhen()` 사용 
 
