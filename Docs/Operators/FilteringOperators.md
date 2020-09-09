@@ -3,8 +3,8 @@
 - [ignoreElements](#ignoreElements)
 - [elementAt](#elementAt)
 - [filter](#filter)
-- [skip][#skip]
-- [skipWhile][#skipWhile]
+- [skip](#skip)
+- [skipWhile](#skipWhile)
 - [skipUntil](#skipUntil)
 - [take](#take)
 - [takeWhile](#takeWhile)
