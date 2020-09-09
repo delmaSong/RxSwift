@@ -1,9 +1,8 @@
 ## Create Operators
 - [just](#just)
 - [of](#of)
-- [them](#them)
 - [from](#from)
-- [range](#)
+- [range](#range)
 - [generate](#generate)
 - [repeatElement](#repeatElement)
 - [deferred](#deferred)
@@ -15,7 +14,7 @@
 
 <br>
 
-## just, of, them
+## just, of, from
 
 하나의 항목을 방출하는 Observable 생성
 
@@ -75,7 +74,7 @@ Observable.from(fruits)
 
 <br>
 
-## range, them
+## range, generate
 
 정수를 지정된 수만큼 방출하는 Observable
 
