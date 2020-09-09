@@ -1,5 +1,18 @@
 ## Create Operators
+- [just](#just)
+- [of](#of)
+- [them](#them)
 - [from](#from)
+- [range](#)
+- [generate](#generate)
+- [repeatElement](#repeatElement)
+- [deferred](#deferred)
+- [create](#create)
+- [empty](#empty)
+- [error](#error)
+
+
+
 <br>
 
 ## just, of, them
