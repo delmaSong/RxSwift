@@ -212,8 +212,77 @@ completed
 
 ### window
 
+timeSpan, maxCount를 지정해 원본 Observable이 방출하는 항목들을 작은 단위의 Observable로 **분해**함 
+
+`buffer()`는 수집된 배열을 방출하는 Observable 리턴하고, `window()`는 수집된 항목을 방출하는 Inner Observable을 리턴함
+
+Inner Observable은 지정된 최대 항목수만큼 리턴하거나 지정된 시간이 경과하면 Completed 이벤트를 전달하고 종료함.
+
+
+
+```swift
+public func window(timeSpan: RxTimeInterval, count: Int, scheduler: SchedulerType) -> RxSwift.Observable<RxSwift.Observable<Self.Element>>
+```
+
+
+
+```swift
+Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+                .window(timeSpan: .seconds(2), count: 3, scheduler: MainScheduler.instance)
+                .take(5)
+                .subscribe{ 
+                  print($0)
+                	if let observable = $0.element {
+                    observable.subscribe { print("inner", $0) }
+                  }
+                }
+                .disposed(by: disposeBag)
+
+/* 출력
+next(RxSwift.AddRef<Swift.Int>)
+inner: next(0)
+inner: next(1)
+inner: next(2)
+inner: completed
+next(RxSwift.AddRef<Swift.Int>)
+inner: next(3)
+inner: next(4)
+inner: completed
+...
+*/
+```
+
 
 
 <br>
 
 ### groupBy
+
+Observable이 방출하는 요소를 원하는 기준으로 그룹지을 때 사용
+
+연산자를 실행하면 클로저에서 동일한 값을 리턴하는 요소끼리 그룹으로 묶이고,  그룹에 속한 요소들은 개별 Observable을 통해 방출됨
+
+```swift
+public func groupBy<Key: Hashable>(keySelector: @escaping (Element) throws -> Key) -> Observable<GroupedObservable<Key, Element>> {
+  return GroupBy(source: self.asObservable(), selector: keySelector)
+}
+```
+
+
+
+```swift
+let words = ["Apple", "Banana", "Orange", "Book", "City", "Area"]
+
+Observable.from(words)
+          .groupBy { $0.count }
+          .flatMap { $0.toArray() }
+					.subscribe { print($0) }
+          .disposed(by: disposeBag)
+
+/* 출력
+next(["Book", "City", "Area"])
+next(["Apple"])
+next(["Banana", "Orange"])
+*/
+```
+
