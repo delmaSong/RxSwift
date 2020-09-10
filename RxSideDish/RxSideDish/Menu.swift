@@ -31,3 +31,8 @@ struct Menu: Codable {
         case badge
     }
 }
+
+struct MenuContainer: Codable {
+    private(set) var statusCode: Int
+    private(set) var body: [Menu]
+}
