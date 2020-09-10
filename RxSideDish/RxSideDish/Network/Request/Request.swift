@@ -30,8 +30,3 @@ extension Request {
         return request
     }
 }
-
-protocol Queryable {
-    var queryItems: [URLQueryItem] { get }
-    mutating func append(name: QueryParameters, value: String)
-}

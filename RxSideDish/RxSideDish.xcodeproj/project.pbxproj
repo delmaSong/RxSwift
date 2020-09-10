@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60132CF42509FC9B0013A63C /* MainRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60132CF32509FC9B0013A63C /* MainRequest.swift */; };
 		606C91272509ECDB00950211 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606C91262509ECDB00950211 /* Request.swift */; };
 		606C912A2509F07700950211 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606C91292509F07700950211 /* EndPoint.swift */; };
 		60889DDE250539B2004E7215 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60889DDD250539B2004E7215 /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		60132CF32509FC9B0013A63C /* MainRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRequest.swift; sourceTree = "<group>"; };
 		606C91262509ECDB00950211 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		606C91292509F07700950211 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		60889DDA250539B2004E7215 /* RxSideDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSideDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,10 +63,19 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		606C91282509EDE600950211 /* Network */ = {
+		60132CF5250A02600013A63C /* Request */ = {
 			isa = PBXGroup;
 			children = (
 				606C91262509ECDB00950211 /* Request.swift */,
+				60132CF32509FC9B0013A63C /* MainRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		606C91282509EDE600950211 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				60132CF5250A02600013A63C /* Request */,
 				60F731AB2507A7F400CD7214 /* APIService.swift */,
 				606C91292509F07700950211 /* EndPoint.swift */,
 			);
@@ -234,6 +245,7 @@
 				606C912A2509F07700950211 /* EndPoint.swift in Sources */,
 				60F731AC2507A7F400CD7214 /* APIService.swift in Sources */,
 				60889DDE250539B2004E7215 /* AppDelegate.swift in Sources */,
+				60132CF42509FC9B0013A63C /* MainRequest.swift in Sources */,
 				606C91272509ECDB00950211 /* Request.swift in Sources */,
 				60F731AA2507962500CD7214 /* MenuTableViewCell.swift in Sources */,
 				60889DE0250539B2004E7215 /* SceneDelegate.swift in Sources */,
