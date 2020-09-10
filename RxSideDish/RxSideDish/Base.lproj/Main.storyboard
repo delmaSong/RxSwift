@@ -121,6 +121,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="VR2-pz-ZeU"/>
+                    <connections>
+                        <outlet property="menuTableView" destination="Aaf-zM-qmc" id="uy8-5D-tAK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
