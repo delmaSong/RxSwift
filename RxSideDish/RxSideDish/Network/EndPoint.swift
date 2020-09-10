@@ -15,16 +15,3 @@ enum EndPoint {
     static let soup = "\(baseURL)soup/"
 }
 
-enum QueryParameters: CustomStringConvertible {
-    case main
-    case side
-    case soup
-    
-    var description: String {
-        switch self {
-        case .main: return "main"
-        case .side: return "side"
-        case .soup: return "soup"
-        }
-    }
-}
