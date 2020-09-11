@@ -7,18 +7,31 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 class APIService {
-    func fetch(request: URLRequest, completion: @escaping ([Menu]) -> Void) {
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error { print(error); return }
-            guard let data = data else { return }
-            do {
-                let decodedData = try JSONDecoder().decode(MenuContainer.self, from: data)
-                completion(decodedData.body)
-            } catch {
-                print(error)
-            }
-        }.resume()
+    let bag = DisposeBag()
+    let list = PublishSubject<[Menu]>()
+    
+    func fetchWithRxCocoa(url: String) {
+        _ = Observable.just(url)
+            .map {URL(string: $0)! }
+            .map { URLRequest(url: $0) }
+            .flatMap { URLSession.shared.rx.data(request: $0) }
+            .map { self.parse(data: $0) }
+            .bind(to: list)
+            .disposed(by: bag)
+    }
+    
+    func parse(data: Data) -> [Menu] {
+        var list = [Menu]()
+        do {
+            let decodedData = try JSONDecoder().decode(MenuContainer.self, from: data)
+            list = decodedData.body
+        } catch {
+            print(error)
+        }
+        return list
     }
 }
