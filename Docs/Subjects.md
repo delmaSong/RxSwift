@@ -1,6 +1,29 @@
 # Subjects
 
-Subject는 다른 Observable로 이벤트를 받아서 Observer로 전달할 수 있음. **Subject는 Observable인 동시에 Observer**.
+Subject는 다른 Observable로 이벤트를 받아서 Observer로 전달할 수 있음. **Subject는 Observable과 Observer의 역할을 모두 할 수 있는 proxy/bridge Observable**
+
+*단순 Observable은 unicast방식으로 하나의 Observer만 subscribe 할 수 있고, Subject는 multicast방식으로 여러개의 Observer를 subscribe 할 수 있음*
+
+**Unicast**
+
+각각 subscribed 된 Observer가 Observable에 대해 독립적인 실행을 갖는 것
+
+**Multicast**
+
+하나의 Observable 실행이 여러 subscriber에 공유 됨
+
+<img src = "https://user-images.githubusercontent.com/40784518/92991070-ee59b500-f51b-11ea-816b-c31fc613321e.png" width = 60%/>
+
+
+
+### Observable vs Subject
+
+| Observable                                                | Subject                                                      |
+| --------------------------------------------------------- | ------------------------------------------------------------ |
+| 단지 함수. State 존재 X                                   | state를 가짐. data를 메모리에 저장                           |
+| 각각의 Observer에 대해 코드가 실행됨                      | 같은 코드가 실행됨. 모든 Observer에 대해 오직 한번만 실행    |
+| 오직 Observable만 생성(data producer)                     | Observable 생성 및 그것을 관찰할 수 있음(data producer & consumer) |
+| 하나의 Observer에 대해 간단한 Observable이 필요할 때 사용 | 1. 자주 데이터를 저장하고 수정할 때<br />2. 여러개의 Observer가 데이터를 관찰해야 할 때 <br />3. Observer와 Observable 사이의 프록시 역할이 필요할 때<br />사용함 |
 
 
 
@@ -210,3 +233,12 @@ bRealy.accept(3)
 ```
 
 BehaviorRealy에는 value 속성이 있는데, 가장 최근에 Next 이벤트로 전달받은 데이터가 들어있음. 읽기 전용 속성.
+
+
+
+---
+
+**Reference**
+
+- https://medium.com/@rkdthd0403/rxswift-subject-99b401e5d2e5
+
