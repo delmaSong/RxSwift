@@ -18,6 +18,22 @@ Observable == observable Sequence == Sequence
 - Error와 Completed가 전달된 후에는 Observable이 종료됨
 - Observer가 Observable을 구독해야지 값이 전달됨
 - 여러 이벤트를 동시에 전달하지 않음
+- Observable은 ObservableType 프로토콜을 준수한다
+  - Observer가 subscribe할 Observable을 선택하는 게 아닌 Observable에 subscribe로 Observer를 붙임.,,
+
+```swift
+public protocol ObservableType: ObservableConvertibleType {
+    func subscribe<Observer: ObserverType>(_ observer: Observer) -> Disposable where Observer.Element == Element
+}
+
+extension ObservableType {
+    public func asObservable() -> Observable<Element> {
+        return Observable.create { o in
+            return self.subscribe(o)
+        }
+    }
+}
+```
 
 
 
@@ -28,6 +44,33 @@ Observable == observable Sequence == Sequence
 - Observer가 Observable을 구독하는 시점에 Next 이벤트를 통해 값이 전달되고 이어서 Completed 이벤트가 전달됨
 - Observer가 Observable을 구독하는 방법은 Observable에서 subscribe메소드를 호출하면 됨
 - Observer가 구독을 시작한 시점에 이벤트가 전달됨
+- Observer는 ObserverType 프로토콜을 준수한다
+  - Observer가 onNext, onCompleted, onError등의 동작을 가지고 있는데, Observable이 방출한 이벤트를 Observer가 가진 동작을 통해 전달받음
+
+```swift
+public protocol ObserverType {
+    associatedtype Element
+
+    @available(*, deprecated, message: "Use `Element` instead.")
+    typealias E = Element
+
+    func on(_ event: Event<Element>)
+}
+
+extension ObserverType {
+    public func onNext(_ element: Element) {
+        self.on(.next(element))
+    }
+    
+    public func onCompleted() {
+        self.on(.completed)
+    }
+    
+    public func onError(_ error: Swift.Error) {
+        self.on(.error(error))
+    }
+}
+```
 
 
 
