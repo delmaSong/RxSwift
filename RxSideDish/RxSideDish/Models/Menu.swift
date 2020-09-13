@@ -7,6 +7,21 @@
 //
 
 import Foundation
+import RxDataSources
+
+struct SectionOfMenu {
+    var header: String
+    var items: [Menu]
+}
+
+extension SectionOfMenu: SectionModelType {
+    typealias Item = Menu
+
+    init(original: SectionOfMenu, items: [Menu]) {
+        self = original
+        self.items = items
+    }
+}
 
 struct Menu: Codable {
     private(set) var hashColor: String
@@ -15,7 +30,7 @@ struct Menu: Codable {
     private(set) var deliveryType: [String]
     private(set) var title: String
     private(set) var menuDescription: String
-    private(set) var originalPrice: String
+    private(set) var originalPrice: String?
     private(set) var discountedPrice: String?
     private(set) var badge: [String]?
     
@@ -26,8 +41,8 @@ struct Menu: Codable {
         case deliveryType = "delivery_type"
         case title
         case menuDescription = "description"
-        case originalPrice = "s_price"
-        case discountedPrice = "n_price"
+        case originalPrice = "n_price"
+        case discountedPrice = "s_price"
         case badge
     }
 }

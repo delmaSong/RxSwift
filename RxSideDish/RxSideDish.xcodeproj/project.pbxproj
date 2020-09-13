@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		606C912A2509F07700950211 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606C91292509F07700950211 /* EndPoint.swift */; };
+		6078B1D0250CE21F008240DB /* MenuTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6078B1CF250CE21F008240DB /* MenuTableViewDataSource.swift */; };
 		60889DDE250539B2004E7215 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60889DDD250539B2004E7215 /* AppDelegate.swift */; };
 		60889DE0250539B2004E7215 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60889DDF250539B2004E7215 /* SceneDelegate.swift */; };
 		60889DE2250539B2004E7215 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60889DE1250539B2004E7215 /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		606C91292509F07700950211 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		6078B1CF250CE21F008240DB /* MenuTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuTableViewDataSource.swift; path = RxSideDish/MenuTableViewDataSource.swift; sourceTree = SOURCE_ROOT; };
 		60889DDA250539B2004E7215 /* RxSideDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSideDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60889DDD250539B2004E7215 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60889DDF250539B2004E7215 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,8 @@
 		60889DDC250539B2004E7215 /* RxSideDish */ = {
 			isa = PBXGroup;
 			children = (
+				6078B1CF250CE21F008240DB /* MenuTableViewDataSource.swift */,
+				60E8E847250CE05E000A0B55 /* Models */,
 				606C91282509EDE600950211 /* Network */,
 				60889DDD250539B2004E7215 /* AppDelegate.swift */,
 				60889DDF250539B2004E7215 /* SceneDelegate.swift */,
@@ -98,9 +102,16 @@
 				60889DE6250539B4004E7215 /* Assets.xcassets */,
 				60889DE8250539B4004E7215 /* LaunchScreen.storyboard */,
 				60889DEB250539B4004E7215 /* Info.plist */,
-				60F731AD2507BF3200CD7214 /* Menu.swift */,
 			);
 			path = RxSideDish;
+			sourceTree = "<group>";
+		};
+		60E8E847250CE05E000A0B55 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				60F731AD2507BF3200CD7214 /* Menu.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		81E8980A7E8947B204FD921A /* Frameworks */ = {
@@ -229,6 +240,7 @@
 				60F731AE2507BF3200CD7214 /* Menu.swift in Sources */,
 				60889DE2250539B2004E7215 /* ViewController.swift in Sources */,
 				606C912A2509F07700950211 /* EndPoint.swift in Sources */,
+				6078B1D0250CE21F008240DB /* MenuTableViewDataSource.swift in Sources */,
 				60F731AC2507A7F400CD7214 /* APIService.swift in Sources */,
 				60889DDE250539B2004E7215 /* AppDelegate.swift in Sources */,
 				60F731AA2507962500CD7214 /* MenuTableViewCell.swift in Sources */,

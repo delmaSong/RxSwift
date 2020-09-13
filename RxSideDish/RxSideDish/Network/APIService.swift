@@ -12,9 +12,9 @@ import RxCocoa
 
 class APIService {
     let bag = DisposeBag()
-    let list = PublishSubject<[Menu]>()
     
-    func fetchWithRxCocoa(url: String) {
+    func fetchWithRxCocoa(url: String) -> BehaviorSubject<[Menu]> {
+        let list = BehaviorSubject<[Menu]>(value: [])
         _ = Observable.just(url)
             .map {URL(string: $0)! }
             .map { URLRequest(url: $0) }
@@ -22,6 +22,7 @@ class APIService {
             .map { self.parse(data: $0) }
             .bind(to: list)
             .disposed(by: bag)
+        return list
     }
     
     func parse(data: Data) -> [Menu] {
