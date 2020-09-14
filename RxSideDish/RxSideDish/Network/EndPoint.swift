@@ -8,10 +8,10 @@
 
 import Foundation
 
-enum EndPoint {
-    static let baseURL = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/"
-    static let main = "\(baseURL)main/"
-    static let side = "\(baseURL)side/"
-    static let soup = "\(baseURL)soup/"
+enum EndPoints: String, CaseIterable {
+    case main = "main"
+    case soup = "soup"
+    case side = "side"
+    
+    static let BaseURL = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/"
 }
-
