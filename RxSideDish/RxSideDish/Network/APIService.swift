@@ -13,16 +13,12 @@ import RxCocoa
 class APIService {
     let bag = DisposeBag()
     
-    func fetchWithRxCocoa(url: String) -> BehaviorSubject<[Menu]> {
-        let list = BehaviorSubject<[Menu]>(value: [])
-        _ = Observable.just(url)
+    func fetchWithRxCocoa(url: String) -> Observable<[Menu]> {
+       return Observable.just(url)
             .map {URL(string: $0)! }
             .map { URLRequest(url: $0) }
             .flatMap { URLSession.shared.rx.data(request: $0) }
             .map { self.parse(data: $0) }
-            .bind(to: list)
-            .disposed(by: bag)
-        return list
     }
     
     func parse(data: Data) -> [Menu] {
