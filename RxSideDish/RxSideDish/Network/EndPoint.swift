@@ -8,10 +8,17 @@
 
 import Foundation
 
-enum EndPoints: String, CaseIterable {
+enum EndPoints: String, CaseIterable, CustomStringConvertible {
     case main = "main"
     case soup = "soup"
     case side = "side"
     
     static let BaseURL = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/"
+    var description: String {
+        switch self {
+        case .main: return "주 메뉴"
+        case .side: return "반찬 메뉴"
+        case .soup: return "국물 메뉴"
+        }
+    }
 }

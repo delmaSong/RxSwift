@@ -10,8 +10,8 @@ import Foundation
 import RxDataSources
 
 struct SectionOfMenu {
-    var header: String
-    var items: [Menu]
+    var sectionType: EndPoints
+    var items: [Item]
 }
 
 extension SectionOfMenu: SectionModelType {
