@@ -9,7 +9,7 @@
 import UIKit
 
 class MenuTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var menuImage: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var menuDescription: UILabel!
@@ -22,20 +22,21 @@ class MenuTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
+    func configure(with menu: Menu) {
+        title.text = menu.title
+        menuDescription.text = menu.menuDescription
+        discountedPrice.text = menu.discountedPrice
+        originalPrice.attributedText = NSAttributedString(string: "\(String(describing: menu.originalPrice ?? ""))",
+            attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue])
+    }
+    
     private func configure() {
         configureUI()
     }
     
     private func configureUI() {
-        addCancelLine(originalPrice)
         menuImage.layer.cornerRadius = menuImage.frame.width / 2
         menuImage.layer.masksToBounds = true
-    }
-    
-    private func addCancelLine(_ label: UILabel) {
-        guard let text = label.text else { return }
-        let attributedString = NSMutableAttributedString(string: text)
-        attributedString.addAttribute(.strikethroughStyle, value: 1, range: NSRange(text)!)
     }
     
     private func configureBadge(_ text: String) {
