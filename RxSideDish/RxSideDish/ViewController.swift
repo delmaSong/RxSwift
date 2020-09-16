@@ -44,10 +44,7 @@ class ViewController: UIViewController {
         let dataSource = RxTableViewSectionedReloadDataSource<SectionOfMenu>(
             configureCell: { dataSource, tableView, indexPath, item in
                 let cell = tableView.dequeueReusableCell(withIdentifier: "MenuTableViewCell", for: indexPath) as! MenuTableViewCell
-                cell.title.text = item.title
-                cell.menuDescription.text = item.menuDescription
-                cell.originalPrice.text = item.originalPrice
-                cell.discountedPrice.text = item.discountedPrice
+                cell.configure(with: item)
                 return cell
         })
         
