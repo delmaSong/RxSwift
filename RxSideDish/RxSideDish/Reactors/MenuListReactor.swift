@@ -52,8 +52,6 @@ final class MenuListReactor: Reactor {
         var newState = state
         switch mutation {
         case .fetchMenu(let sectionOfMenu):
-            //            var willMutate = newState.sectionOfMenu
-            
             newState.completedDataFetching = true
             newState.sectionOfMenu = sectionOfMenu
         }
