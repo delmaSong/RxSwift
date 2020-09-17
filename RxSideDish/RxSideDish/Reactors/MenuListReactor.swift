@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import ReactorKit
 import RxDataSources
+import Kingfisher
 
 final class MenuListReactor: Reactor {
     var initialState: State = State(completedDataFetching: false, sectionOfMenu: [])
@@ -63,6 +64,9 @@ final class MenuListReactor: Reactor {
             configureCell: { dataSource, tableView, indexPath, item in
                 let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MenuTableViewCell.self), for: indexPath) as! MenuTableViewCell
                 cell.configure(with: item)
+                cell.configure {
+                    $0.kf.setImage(with: URL(string: item.image))
+                }
                 return cell
             })
         

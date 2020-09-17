@@ -30,7 +30,8 @@ class MenuTableViewCell: UITableViewCell {
             attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue])
     }
     
-    private func configure() {
+    func configure(_ handler: @escaping (UIImageView) -> Void) {
+        handler(menuImage)
         configureUI()
     }
     
