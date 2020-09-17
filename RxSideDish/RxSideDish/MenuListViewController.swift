@@ -12,7 +12,7 @@ import RxCocoa
 import RxDataSources
 import ReactorKit
 
-class MenuListViewController: UIViewController, ReactorKit.View {
+class MenuListViewController: UIViewController, ReactorKit.StoryboardView {
     typealias Reactor = MenuListReactor
     
     @IBOutlet weak var menuTableView: UITableView!
@@ -29,8 +29,7 @@ class MenuListViewController: UIViewController, ReactorKit.View {
         
         let dataSource = reactor.bindMenuTableViewRxDataSource()
 
-        reactor.state
-            .map({ $0.sectionOfMenu })
+        reactor.state.map { $0.sectionOfMenu }
             .bind(to: menuTableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }
