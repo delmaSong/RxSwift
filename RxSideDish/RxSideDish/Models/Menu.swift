@@ -24,7 +24,7 @@ extension SectionOfMenu: SectionModelType {
 }
 
 struct Menu: Codable {
-    private(set) var hashColor: String
+    private(set) var menuID: String
     private(set) var image: String
     private(set) var imageDescription: String
     private(set) var deliveryType: [String]
@@ -35,7 +35,7 @@ struct Menu: Codable {
     private(set) var badge: [String]?
     
     enum CodingKeys: String, CodingKey {
-        case hashColor = "detail_hash"
+        case menuID = "detail_hash"
         case image
         case imageDescription = "alt"
         case deliveryType = "delivery_type"

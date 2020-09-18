@@ -20,6 +20,19 @@ class MenuTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        badgePlaceholder.isHidden = true
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        menuImage.image = nil
+        title.text = nil
+        menuDescription.text = nil
+        discountedPrice.text = nil
+        originalPrice.text = nil
+        badgeStack.subviews.forEach {
+            $0.removeFromSuperview()
+        }
     }
     
     func configure(with menu: Menu) {
@@ -28,6 +41,9 @@ class MenuTableViewCell: UITableViewCell {
         discountedPrice.text = menu.discountedPrice
         originalPrice.attributedText = NSAttributedString(string: "\(String(describing: menu.originalPrice ?? ""))",
             attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue])
+        menu.badge?.forEach({ feat in
+            configureBadge(feat)
+        })
     }
     
     func configure(_ handler: @escaping (UIImageView) -> Void) {
@@ -43,7 +59,8 @@ class MenuTableViewCell: UITableViewCell {
     private func configureBadge(_ text: String) {
         let label = UILabel()
         label.text = text
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        label.backgroundColor = UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 0.5)
         label.translatesAutoresizingMaskIntoConstraints = false
         badgeStack.addArrangedSubview(label)
     }

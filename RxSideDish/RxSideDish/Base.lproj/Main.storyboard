@@ -67,7 +67,7 @@
                                                         <constraint firstItem="Bd0-ni-usq" firstAttribute="top" secondItem="ueb-if-h89" secondAttribute="top" id="DHG-kY-9UD"/>
                                                     </constraints>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Z8e-SE-uQo">
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Z8e-SE-uQo">
                                                     <rect key="frame" x="134" y="86" width="33" height="16"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDu-Pf-9aO">
