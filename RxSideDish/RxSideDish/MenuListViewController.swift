@@ -21,16 +21,22 @@ class MenuListViewController: UIViewController, ReactorKit.StoryboardView {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = true
+        configure()
     }
     
     func bind(reactor: MenuListReactor) {
         reactor.action.onNext(.presented)
         
         let dataSource = reactor.bindMenuTableViewRxDataSource()
-
         reactor.state.map { $0.sectionOfMenu }
             .bind(to: menuTableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+    }
+    
+    private func configure() {
+        navigationController?.isNavigationBarHidden = true
+        menuTableView.rx.itemSelected.subscribe { [weak self] indexPath in
+            self?.menuTableView.deselectRow(at: indexPath, animated: true)
+        }.disposed(by: disposeBag)
     }
 }
