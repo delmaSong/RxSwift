@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import RxSwift
+import ReactorKit
 
-class MenuDetailViewController: UIViewController {
+class MenuDetailViewController: UIViewController, ReactorKit.StoryboardView {
+    typealias Reactor = MenuDetailReactor
+    var disposeBag: DisposeBag = DisposeBag()
 
     @IBOutlet weak var thumbnailStackView: UIStackView!
     @IBOutlet weak var detailStackView: UIStackView!
@@ -23,4 +27,9 @@ class MenuDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    func bind(reactor: MenuDetailReactor) {
+        
+    }
+    
 }

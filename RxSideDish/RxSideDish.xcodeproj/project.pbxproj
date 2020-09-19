@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		606856AE251601F30083A1EC /* MenuDetailReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606856AD251601F30083A1EC /* MenuDetailReactor.swift */; };
 		606C912A2509F07700950211 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606C91292509F07700950211 /* EndPoint.swift */; };
 		60705F902511AA3B008340BA /* MenuListReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705F8F2511AA3B008340BA /* MenuListReactor.swift */; };
 		6074E4E625144EE700FAA583 /* MenuDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074E4E525144EE700FAA583 /* MenuDetail.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		606856AD251601F30083A1EC /* MenuDetailReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetailReactor.swift; sourceTree = "<group>"; };
 		606C91292509F07700950211 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		60705F8F2511AA3B008340BA /* MenuListReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListReactor.swift; sourceTree = "<group>"; };
 		6074E4E525144EE700FAA583 /* MenuDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetail.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				60705F8F2511AA3B008340BA /* MenuListReactor.swift */,
+				606856AD251601F30083A1EC /* MenuDetailReactor.swift */,
 			);
 			path = Reactors;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				606C912A2509F07700950211 /* EndPoint.swift in Sources */,
 				6074E4E625144EE700FAA583 /* MenuDetail.swift in Sources */,
 				60F731AC2507A7F400CD7214 /* APIService.swift in Sources */,
+				606856AE251601F30083A1EC /* MenuDetailReactor.swift in Sources */,
 				60889DDE250539B2004E7215 /* AppDelegate.swift in Sources */,
 				6080668C251494C10022B7E0 /* MenuDetailViewController.swift in Sources */,
 				60F731AA2507962500CD7214 /* MenuTableViewCell.swift in Sources */,
