@@ -35,8 +35,9 @@ class MenuListViewController: UIViewController, ReactorKit.StoryboardView {
     
     private func configure() {
         navigationController?.isNavigationBarHidden = true
-        menuTableView.rx.itemSelected.subscribe { [weak self] indexPath in
-            self?.menuTableView.deselectRow(at: indexPath, animated: true)
+        menuTableView.rx.itemSelected.subscribe { [weak self] item in
+            let indexPath = item.element.map { $0 }
+            self?.menuTableView.deselectRow(at: indexPath ?? IndexPath(), animated: true)
         }.disposed(by: disposeBag)
     }
 }
