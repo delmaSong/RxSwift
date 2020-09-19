@@ -107,7 +107,6 @@
 				60889DDF250539B2004E7215 /* SceneDelegate.swift */,
 				60889DDD250539B2004E7215 /* AppDelegate.swift */,
 				60889DE6250539B4004E7215 /* Assets.xcassets */,
-				60889DEB250539B4004E7215 /* Info.plist */,
 			);
 			path = Entry;
 			sourceTree = "<group>";
@@ -133,6 +132,7 @@
 		60889DDC250539B2004E7215 /* RxSideDish */ = {
 			isa = PBXGroup;
 			children = (
+				60889DEB250539B4004E7215 /* Info.plist */,
 				60806687251492DC0022B7E0 /* Views */,
 				60806686251492CD0022B7E0 /* Controllers */,
 				6040DED42510BDB400036A5C /* Reactors */,
