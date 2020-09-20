@@ -14,20 +14,24 @@ import RxDataSources
 import Kingfisher
 
 final class MenuListReactor: Reactor {
-    var initialState: State = State(completedDataFetching: false, sectionOfMenu: [])
+    var initialState: State = State(completedDataFetching: false, sectionOfMenu: [], tappedCellID: nil, isCellTapped: false)
     private var apiService = APIService()
     
     enum Action {
         case presented
+        case cellDidTapped(String)
     }
     
     enum Mutation {
         case fetchMenu([SectionOfMenu])
+        case presentMenuDetail(String)
     }
     
     struct State {
         var completedDataFetching: Bool
         var sectionOfMenu: [SectionOfMenu]
+        var tappedCellID: String?
+        var isCellTapped: Bool
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -46,6 +50,8 @@ final class MenuListReactor: Reactor {
             }.map { menus -> Mutation in
                 return .fetchMenu(menus)
             }
+        case .cellDidTapped(let hash):
+            return Observable.just(Mutation.presentMenuDetail(hash))
         }
     }
     
@@ -55,6 +61,9 @@ final class MenuListReactor: Reactor {
         case .fetchMenu(let sectionOfMenu):
             newState.completedDataFetching = true
             newState.sectionOfMenu = sectionOfMenu
+        case .presentMenuDetail(let hash):
+            newState.tappedCellID = hash
+            newState.isCellTapped = true
         }
         return newState
     }

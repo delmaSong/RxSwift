@@ -31,13 +31,25 @@ class MenuListViewController: UIViewController, ReactorKit.StoryboardView {
         reactor.state.map { $0.sectionOfMenu }
             .bind(to: menuTableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
+        reactor.state.filter { $0.isCellTapped }
+            .map { $0.tappedCellID }
+            .bind { [weak self] menuID in
+                    guard let menuDetailViewController = self?.storyboard?.instantiateViewController(withIdentifier: String(describing: MenuDetailViewController.self)) as? MenuDetailViewController else { return }
+                self?.navigationController?.pushViewController(menuDetailViewController, animated: true)
+            }.disposed(by: disposeBag)
     }
     
     private func configure() {
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.setNavigationBarHidden(true, animated: false)
         menuTableView.rx.itemSelected.subscribe { [weak self] item in
             let indexPath = item.element.map { $0 }
             self?.menuTableView.deselectRow(at: indexPath ?? IndexPath(), animated: true)
+        }.disposed(by: disposeBag)
+        
+        menuTableView.rx.modelSelected(Menu.self).subscribe { [weak self] model in
+            let item = model.element.map { $0 }
+            self?.reactor?.action.onNext(.cellDidTapped(item?.menuID ?? ""))
         }.disposed(by: disposeBag)
     }
 }

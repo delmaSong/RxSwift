@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6c9-ZR-wNv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bom-Gh-MKL">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -127,7 +127,7 @@
         <!--Menu Detail View Controller-->
         <scene sceneID="0Vk-ZJ-jdG">
             <objects>
-                <viewController storyboardIdentifier="MenuDetailViewController" id="6c9-ZR-wNv" customClass="MenuDetailViewController" customModule="RxSideDish" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuDetailViewController" modalPresentationStyle="fullScreen" id="6c9-ZR-wNv" customClass="MenuDetailViewController" customModule="RxSideDish" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V1f-Gh-EHy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

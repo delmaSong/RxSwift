@@ -26,10 +26,14 @@ class MenuDetailViewController: UIViewController, ReactorKit.StoryboardView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     func bind(reactor: MenuDetailReactor) {
-        
     }
-    
 }
