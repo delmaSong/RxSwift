@@ -42,4 +42,19 @@ struct UseCase {
                 return list
             }
     }
+    
+    func fetchMenu(type: EndPoints, ID: String) -> Observable<Menu?> {
+        let url = "\(EndPoints.BaseURL)\(type.rawValue)/\(ID)"
+        return apiService.fetch(url: url)
+            .map { data -> Menu? in
+                var menu: Menu?
+                do {
+                    let decodedData = try JSONDecoder().decode(Menu.self, from: data)
+                    menu = decodedData
+                } catch {
+                    print(error)
+                }
+                return menu
+            }
+    }
 }

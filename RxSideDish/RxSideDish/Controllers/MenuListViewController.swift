@@ -16,7 +16,8 @@ class MenuListViewController: UIViewController, ReactorKit.StoryboardView {
     typealias Reactor = MenuListReactor
     
     @IBOutlet weak var menuTableView: UITableView!
-    
+
+    private var typeIndex: Int?
     var disposeBag: DisposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -37,7 +38,7 @@ class MenuListViewController: UIViewController, ReactorKit.StoryboardView {
             .bind { [weak self] menuID in
                     guard let menuDetailViewController = self?.storyboard?.instantiateViewController(withIdentifier: String(describing: MenuDetailViewController.self)) as? MenuDetailViewController else { return }
                 self?.navigationController?.pushViewController(menuDetailViewController, animated: true)
-                menuDetailViewController.set(menuID: menuID ?? "")
+                menuDetailViewController.set(type: self?.typeIndex ?? 0, menuID: menuID ?? "")
             }.disposed(by: disposeBag)
     }
     
@@ -45,7 +46,7 @@ class MenuListViewController: UIViewController, ReactorKit.StoryboardView {
         navigationController?.setNavigationBarHidden(true, animated: false)
         menuTableView.rx.itemSelected.subscribe { [weak self] item in
             let indexPath = item.element.map { $0 }
-            self?.menuTableView.deselectRow(at: indexPath ?? IndexPath(), animated: true)
+            self?.typeIndex = indexPath?.item
         }.disposed(by: disposeBag)
         
         menuTableView.rx.modelSelected(Menu.self).subscribe { [weak self] model in

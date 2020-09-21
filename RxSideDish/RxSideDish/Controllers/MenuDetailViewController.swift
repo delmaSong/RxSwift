@@ -25,6 +25,7 @@ class MenuDetailViewController: UIViewController, ReactorKit.StoryboardView {
     @IBOutlet weak var discountedPriceLabel: UILabel!
 
     private var menuID: String?
+    private var type: EndPoints?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +39,35 @@ class MenuDetailViewController: UIViewController, ReactorKit.StoryboardView {
     }
     
     func bind(reactor: MenuDetailReactor) {
-        reactor.action.onNext(.presented(menuID))
+        reactor.action.onNext(.presented(type, menuID))
+        reactor.state.map { $0.menuDetail }
+            .observeOn(MainScheduler.instance)
+            .bind { [weak self] menu in
+                self?.descriptionLabel.text = menu?.menuDescription
+                self?.deliveryFeeLabel.text = menu?.deliveryFee
+                self?.pointLabel.text = menu?.point
+                self?.deliveryInfoLabel.text = menu?.deliveryInfo
+                if menu?.prices.count == 1 {
+                    self?.discountedPriceLabel.text = menu?.prices[0]
+                } else {
+                    self?.originalPriceLabel.text = menu?.prices[0]
+                    self?.discountedPriceLabel.text = menu?.prices[1]
+                }
+                
+            }.disposed(by: disposeBag)
     }
     
-    func set(menuID: String) {
+    func set(type: Int, menuID: String) {
         self.menuID = menuID
+        switch type {
+        case 0:
+            self.type = .main
+        case 1:
+            self.type = .soup
+        case 2:
+            self.type = .side
+        default:
+            break
+        }
     }
 }
