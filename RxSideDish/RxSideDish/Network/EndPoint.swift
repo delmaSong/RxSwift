@@ -14,6 +14,8 @@ enum EndPoints: String, CaseIterable, CustomStringConvertible {
     case side = "side"
     
     static let BaseURL = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/"
+    static let DetailURL = "\(BaseURL)detail/"
+
     var description: String {
         switch self {
         case .main: return "주 메뉴"

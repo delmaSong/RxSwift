@@ -13,22 +13,10 @@ import RxCocoa
 class APIService {
     let bag = DisposeBag()
     
-    func fetchWithRxCocoa(url: String) -> Observable<[Menu]> {
-       return Observable.just(url)
+    func fetch(url: String) -> Observable<Data> {
+        return Observable.just(url)
             .map {URL(string: $0)! }
             .map { URLRequest(url: $0) }
             .flatMap { URLSession.shared.rx.data(request: $0) }
-            .map { self.parse(data: $0) }
-    }
-    
-    func parse(data: Data) -> [Menu] {
-        var list = [Menu]()
-        do {
-            let decodedData = try JSONDecoder().decode(MenuContainer.self, from: data)
-            list = decodedData.data
-        } catch {
-            print(error)
-        }
-        return list
     }
 }

@@ -15,7 +15,7 @@ import Kingfisher
 
 final class MenuListReactor: Reactor {
     var initialState: State = State(completedDataFetching: false, sectionOfMenu: [], tappedCellID: nil, isCellTapped: false)
-    private var apiService = APIService()
+    private var useCase = UseCase()
     
     enum Action {
         case presented
@@ -37,11 +37,10 @@ final class MenuListReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .presented:
-            let createObs: ((EndPoints) -> Observable<SectionOfMenu>) = { endPoint -> Observable<SectionOfMenu> in
-                let url = EndPoints.BaseURL + endPoint.rawValue
-                return self.apiService.fetchWithRxCocoa(url: url)
+            let createObs: ((EndPoints) -> Observable<SectionOfMenu>) = { type -> Observable<SectionOfMenu> in
+                return self.useCase.fetchMenuList(type: type)
                     .map({ menus -> SectionOfMenu in
-                        return SectionOfMenu(sectionType: endPoint, items: menus)
+                        return SectionOfMenu(sectionType: type, items: menus)
                     })
             }
             
