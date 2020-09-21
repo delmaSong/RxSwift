@@ -12,9 +12,10 @@ import ReactorKit
 
 final class MenuDetailReactor: Reactor {
     var initialState: State = State(isOrdered: false, menuDetail: nil)
-
+    private var useCase = UseCase()
+    
     enum Action {
-        case presented
+        case presented(String?)
         case orderButtonDidTapped
     }
     
@@ -30,15 +31,16 @@ final class MenuDetailReactor: Reactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .presented:
-            //TODO: - 서버로 요청
-            break
+        case .presented(let menuID):
+            return useCase.fetchMenuDetail(ID: menuID ?? "")
+                .map { menuDetail -> Mutation in
+                return .fetchDetail(menuDetail!)
+                }
         case .orderButtonDidTapped:
-            //TODO: - alert 띄워주기
-            break
+            return Observable.just(.order(true))
         }
     }
-    
+
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
         switch mutation {

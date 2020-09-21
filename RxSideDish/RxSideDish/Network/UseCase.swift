@@ -14,7 +14,7 @@ struct UseCase {
     let apiService = APIService()
     
     func fetchMenuDetail(ID: String) -> Observable<MenuDetail?> {
-        let url = "\(EndPoints.DetailURL)/\(ID)"
+        let url = "\(EndPoints.DetailURL)\(ID)"
         return apiService.fetch(url: url)
             .map { data -> MenuDetail? in
                 var detailMenu: MenuDetail?

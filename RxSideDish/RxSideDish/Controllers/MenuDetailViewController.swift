@@ -23,9 +23,12 @@ class MenuDetailViewController: UIViewController, ReactorKit.StoryboardView {
     @IBOutlet weak var deliveryInfoLabel: UILabel!
     @IBOutlet weak var originalPriceLabel: UILabel!
     @IBOutlet weak var discountedPriceLabel: UILabel!
+
+    private var menuID: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        reactor = MenuDetailReactor()
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
@@ -35,5 +38,10 @@ class MenuDetailViewController: UIViewController, ReactorKit.StoryboardView {
     }
     
     func bind(reactor: MenuDetailReactor) {
+        reactor.action.onNext(.presented(menuID))
+    }
+    
+    func set(menuID: String) {
+        self.menuID = menuID
     }
 }
