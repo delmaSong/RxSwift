@@ -25,7 +25,7 @@ class APIService {
         var list = [Menu]()
         do {
             let decodedData = try JSONDecoder().decode(MenuContainer.self, from: data)
-            list = decodedData.body
+            list = decodedData.data
         } catch {
             print(error)
         }

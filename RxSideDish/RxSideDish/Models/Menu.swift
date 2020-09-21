@@ -23,6 +23,16 @@ extension SectionOfMenu: SectionModelType {
     }
 }
 
+struct MenuContainer: Codable {
+    private(set) var statusCode: Int
+    private(set) var data: [Menu]
+    
+    enum CodingKeys: String, CodingKey {
+        case statusCode
+        case data = "body"
+    }
+}
+
 struct Menu: Codable {
     private(set) var menuID: String
     private(set) var image: String
@@ -45,9 +55,4 @@ struct Menu: Codable {
         case discountedPrice = "s_price"
         case badge
     }
-}
-
-struct MenuContainer: Codable {
-    private(set) var statusCode: Int
-    private(set) var body: [Menu]
 }
