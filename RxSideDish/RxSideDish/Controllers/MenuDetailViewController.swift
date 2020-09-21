@@ -31,6 +31,7 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
     
     private var menuID: String?
     private var type: EndPoints?
+    private let mainInstance = MainScheduler.instance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,20 +44,25 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-    var totlaPages: Int = 0
-    
     func bind(reactor: MenuDetailReactor) {
         reactor.action.onNext(.presented(type, menuID))
         reactor.state.map { $0.menuDetail }
-            .observeOn(MainScheduler.instance)
-            .bind(onNext: { self.configure($0) })
-            .disposed(by: disposeBag)
+            .observeOn(mainInstance)
+            .bind(onNext: { [weak self] menuDetail in
+                self?.configure(menuDetail)
+            }).disposed(by: disposeBag)
         
         reactor.state.map { $0.menuInfo }
-            .observeOn(MainScheduler.instance)
-            .bind(onNext: { self.configure($0) })
-            .disposed(by: disposeBag)
-
+            .observeOn(mainInstance)
+            .bind(onNext: { [weak self] menuInfo in
+                self?.configure(menuInfo)
+            }).disposed(by: disposeBag)
+        
+        reactor.state.map { $0.menuDetail?.thumbImages.count ?? 0 }
+            .observeOn(mainInstance)
+            .bind { [weak self] count in
+                self?.pageControl.numberOfPages = count
+            }.disposed(by: disposeBag)
     }
     
     func set(type: Int, menuID: String) {
@@ -104,13 +110,9 @@ extension MenuDetailViewController {
         menuDetail?.thumbImages.forEach({
             add(url: $0, at: (thumbnailStackView)!)
         })
-        if let count = menuDetail?.thumbImages.count {
-            configurePageControl(count)
-        }
     }
     
-    private func configurePageControl(_ pageCount: Int) {
-        pageControl.numberOfPages = pageCount
+    private func configurePageControl() {
         pageControl.currentPage = 0
         thumbnailScrollView.rx.contentOffset.map { point -> Int in
             return Int(point.x / self.thumbnailScrollView.frame.maxX)
@@ -122,5 +124,6 @@ extension MenuDetailViewController {
     private func configureUI() {
         navigationController?.setNavigationBarHidden(false, animated: false)
         thumbnailPlaceholder.removeFromSuperview()
+        configurePageControl()
     }
 }
