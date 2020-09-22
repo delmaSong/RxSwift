@@ -35,6 +35,7 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
     @IBOutlet weak var deliveryInfoLabel: UILabel!
     @IBOutlet weak var originalPriceLabel: UILabel!
     @IBOutlet weak var discountedPriceLabel: UILabel!
+    @IBOutlet weak var orderButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,5 +150,7 @@ extension MenuDetailViewController {
         thumbnailPlaceholder.removeFromSuperview()
         detailPlaceholder.removeFromSuperview()
         configurePageControl()
+        orderButton.layer.cornerRadius = 16
+        orderButton.layer.masksToBounds = true
     }
 }

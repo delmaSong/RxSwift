@@ -135,7 +135,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvP-7P-R5b" userLabel="Whole Scroll View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="841.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eeY-1B-XmD">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="659"/>
@@ -313,17 +313,29 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="ybg-bx-Sbv"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="Wry-rP-Qqa"/>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m7i-fg-pNL">
+                                <rect key="frame" x="8" y="811.5" width="398" height="62.5"/>
+                                <color key="backgroundColor" red="0.46195666216715114" green="0.77944867227979275" blue="0.51495997229888835" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="order">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DUn-Fv-El0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="m7i-fg-pNL" firstAttribute="height" secondItem="V1f-Gh-EHy" secondAttribute="height" multiplier="0.07" id="2xT-nI-0iZ"/>
                             <constraint firstItem="Aid-we-kZO" firstAttribute="height" secondItem="V1f-Gh-EHy" secondAttribute="height" multiplier="0.23" id="6Y1-tr-Ci7"/>
+                            <constraint firstItem="DUn-Fv-El0" firstAttribute="trailing" secondItem="m7i-fg-pNL" secondAttribute="trailing" constant="8" id="BFd-0A-Hoo"/>
                             <constraint firstItem="uvP-7P-R5b" firstAttribute="top" secondItem="V1f-Gh-EHy" secondAttribute="top" id="LDQ-Ca-eYV"/>
                             <constraint firstItem="MsH-JV-cs5" firstAttribute="width" secondItem="V1f-Gh-EHy" secondAttribute="width" id="Wdd-dG-ia6"/>
-                            <constraint firstAttribute="bottom" secondItem="uvP-7P-R5b" secondAttribute="bottom" id="dx3-3E-Gxc"/>
+                            <constraint firstItem="m7i-fg-pNL" firstAttribute="top" secondItem="uvP-7P-R5b" secondAttribute="bottom" constant="-30" id="dx3-3E-Gxc"/>
                             <constraint firstItem="uvP-7P-R5b" firstAttribute="leading" secondItem="V1f-Gh-EHy" secondAttribute="leading" id="fhm-ap-5vT"/>
                             <constraint firstItem="klC-Wv-SkI" firstAttribute="height" secondItem="V1f-Gh-EHy" secondAttribute="height" multiplier="0.282366" id="mGk-wo-Yea"/>
+                            <constraint firstAttribute="bottom" secondItem="m7i-fg-pNL" secondAttribute="bottom" constant="22" id="mtJ-Cr-0P4"/>
                             <constraint firstItem="uvP-7P-R5b" firstAttribute="trailing" secondItem="V1f-Gh-EHy" secondAttribute="trailing" id="rw0-Hz-g9k"/>
+                            <constraint firstItem="m7i-fg-pNL" firstAttribute="leading" secondItem="DUn-Fv-El0" secondAttribute="leading" constant="8" id="vey-qM-F7I"/>
                             <constraint firstItem="EAC-XW-mUM" firstAttribute="height" secondItem="V1f-Gh-EHy" secondAttribute="height" multiplier="0.282366" id="xFg-04-Hfd"/>
                         </constraints>
                     </view>
@@ -334,6 +346,7 @@
                         <outlet property="detailPlaceholder" destination="8sN-FB-WqV" id="aex-2T-r5u"/>
                         <outlet property="detailStackView" destination="eHB-fi-d7I" id="x1J-Yp-MRy"/>
                         <outlet property="discountedPriceLabel" destination="1GP-PA-qxA" id="eLY-BQ-gI6"/>
+                        <outlet property="orderButton" destination="m7i-fg-pNL" id="9b2-rQ-7Kf"/>
                         <outlet property="originalPriceLabel" destination="90X-xM-IIq" id="OzQ-67-HUS"/>
                         <outlet property="pageControl" destination="HiS-oC-ZbJ" id="O5R-OI-X4E"/>
                         <outlet property="pointLabel" destination="YIO-Vh-N5w" id="MpQ-Gs-NWG"/>
