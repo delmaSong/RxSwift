@@ -51,20 +51,23 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
     func bind(reactor: MenuDetailReactor) {
         reactor.action.onNext(.presented(type, menuID))
         
-        orderButton.rx.tap.bind {
-            reactor.action.onNext(.orderButtonDidTapped)
-        }.disposed(by: disposeBag)
+        orderButton.rx.tap
+            .map({
+                return Reactor.Action.orderButtonDidTapped
+            })
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
         reactor.state.map { $0.menuDetail }
             .observeOn(mainInstance)
             .bind(onNext: { [weak self] menuDetail in
-                self?.configure(menuDetail)
+                self?.configure(menuDetail: menuDetail)
             }).disposed(by: disposeBag)
         
         reactor.state.map { $0.menuInfo }
             .observeOn(mainInstance)
             .bind(onNext: { [weak self] menuInfo in
-                self?.configure(menuInfo)
+                self?.configure(menu: menuInfo)
             }).disposed(by: disposeBag)
         
         reactor.state.map { $0.menuDetail?.thumbImages.count ?? 0 }
@@ -94,6 +97,7 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
     }
     
     private func add(url: String, of stackView: UIStackView, contentMode: UIView.ContentMode, isThumbnail: Bool) {
+        
         retrieveImage(at: url) {
             let placeholderImageView = UIImageView()
             placeholderImageView.image = $0
@@ -130,11 +134,11 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
 
 extension MenuDetailViewController {
     
-    private func configure(_ menu: Menu?) {
+    private func configure(menu: Menu?) {
         titleLabel.text = menu?.title
     }
     
-    private func configure(_ menuDetail: MenuDetail?) {
+    private func configure(menuDetail: MenuDetail?) {
         descriptionLabel.text = menuDetail?.menuDescription
         deliveryFeeLabel.text = menuDetail?.deliveryFee
         pointLabel.text = menuDetail?.point
@@ -160,7 +164,9 @@ extension MenuDetailViewController {
         thumbnailScrollView.rx.contentOffset.map { point -> Int in
             return Int(point.x / self.thumbnailScrollView.frame.maxX)
         }.subscribe {
-            self.pageControl.currentPage = $0
+            if let index = $0.element {
+                self.pageControl.currentPage = index
+            }
         }.disposed(by: disposeBag)
     }
     
