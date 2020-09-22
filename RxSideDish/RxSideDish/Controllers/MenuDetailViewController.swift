@@ -16,10 +16,18 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
     typealias Reactor = MenuDetailReactor
     var disposeBag: DisposeBag = DisposeBag()
     
+    private var menuID: String?
+    private var type: EndPoints?
+    private let mainInstance = MainScheduler.instance
+    
     @IBOutlet weak var thumbnailScrollView: UIScrollView!
     @IBOutlet weak var thumbnailStackView: UIStackView!
     @IBOutlet weak var thumbnailPlaceholder: UIImageView!
+    @IBOutlet weak var pageControl: UIPageControl!
+    
     @IBOutlet weak var detailStackView: UIStackView!
+    @IBOutlet weak var detailPlaceholder: UIImageView!
+    
     @IBOutlet weak var pointLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -27,11 +35,6 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
     @IBOutlet weak var deliveryInfoLabel: UILabel!
     @IBOutlet weak var originalPriceLabel: UILabel!
     @IBOutlet weak var discountedPriceLabel: UILabel!
-    @IBOutlet weak var pageControl: UIPageControl!
-    
-    private var menuID: String?
-    private var type: EndPoints?
-    private let mainInstance = MainScheduler.instance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,12 +82,27 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
         }
     }
     
-    private func add(url: String, at stackView: UIStackView) {
-        let placeholderImageView = UIImageView()
-        placeholderImageView.translatesAutoresizingMaskIntoConstraints = false
-        placeholderImageView.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
-        stackView.addArrangedSubview(placeholderImageView)
-        placeholderImageView.kf.setImage(with: URL(string: url)!)
+    private func add(url: String, of stackView: UIStackView, contentMode: UIView.ContentMode) {
+        retrieveImage(at: url) {
+            let placeholderImageView = UIImageView()
+            placeholderImageView.image = $0
+            placeholderImageView.contentMode = contentMode
+            placeholderImageView.translatesAutoresizingMaskIntoConstraints = false
+            placeholderImageView.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
+            placeholderImageView.heightAnchor.constraint(equalTo: placeholderImageView.widthAnchor, multiplier: $0.size.height / $0.size.width).isActive = true
+            stackView.addArrangedSubview(placeholderImageView)
+        }
+    }
+
+    private func retrieveImage(at url: String, handler: @escaping (UIImage) -> Void) {
+        KingfisherManager.shared.retrieveImage(with: URL(string: url)!) { result in
+            switch result {
+            case .success(let retrieve):
+                handler(retrieve.image)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 
@@ -108,7 +126,11 @@ extension MenuDetailViewController {
             discountedPriceLabel.text = menuDetail?.prices[1]
         }
         menuDetail?.thumbImages.forEach({
-            add(url: $0, at: (thumbnailStackView)!)
+            add(url: $0, of: thumbnailStackView!, contentMode: .scaleAspectFill)
+        })
+        
+        menuDetail?.detailImages.forEach({
+            add(url: $0, of: detailStackView!, contentMode: .scaleAspectFit)
         })
     }
     
@@ -124,6 +146,7 @@ extension MenuDetailViewController {
     private func configureUI() {
         navigationController?.setNavigationBarHidden(false, animated: false)
         thumbnailPlaceholder.removeFromSuperview()
+        detailPlaceholder.removeFromSuperview()
         configurePageControl()
     }
 }
