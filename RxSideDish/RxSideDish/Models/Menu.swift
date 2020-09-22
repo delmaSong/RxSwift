@@ -33,7 +33,7 @@ struct MenuContainer: Codable {
     }
 }
 
-struct Menu: Codable {
+struct Menu: Codable, Equatable {
     private(set) var menuID: String
     private(set) var image: String
     private(set) var imageDescription: String

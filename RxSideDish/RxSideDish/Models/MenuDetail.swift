@@ -13,7 +13,7 @@ struct MenuDetailContainer: Codable {
     private(set) var data: MenuDetail
 }
 
-struct MenuDetail: Codable {
+struct MenuDetail: Codable, Equatable {
     private(set) var topImage: String
     private(set) var thumbImages: [String]
     private(set) var menuDescription: String

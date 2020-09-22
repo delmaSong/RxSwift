@@ -58,12 +58,14 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
             .disposed(by: disposeBag)
         
         reactor.state.map { $0.menuDetail }
+            .distinctUntilChanged { $0 == $1 }
             .observeOn(mainInstance)
             .bind(onNext: { [weak self] menuDetail in
                 self?.configure(menuDetail: menuDetail)
             }).disposed(by: disposeBag)
         
         reactor.state.map { $0.menuInfo }
+            .distinctUntilChanged { $0 == $1 }
             .observeOn(mainInstance)
             .bind(onNext: { [weak self] menuInfo in
                 self?.configure(menu: menuInfo)
@@ -82,7 +84,7 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
     }
     
     private func add(url: String, of stackView: UIStackView, contentMode: UIView.ContentMode, isThumbnail: Bool) {
-        
+
         retrieveImage(at: url) {
             let placeholderImageView = UIImageView()
             placeholderImageView.image = $0
