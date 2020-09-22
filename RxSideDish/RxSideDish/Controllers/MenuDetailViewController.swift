@@ -50,6 +50,11 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
     
     func bind(reactor: MenuDetailReactor) {
         reactor.action.onNext(.presented(type, menuID))
+        
+        orderButton.rx.tap.bind {
+            reactor.action.onNext(.orderButtonDidTapped)
+        }.disposed(by: disposeBag)
+        
         reactor.state.map { $0.menuDetail }
             .observeOn(mainInstance)
             .bind(onNext: { [weak self] menuDetail in
@@ -66,6 +71,11 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
             .observeOn(mainInstance)
             .bind { [weak self] count in
                 self?.pageControl.numberOfPages = count
+            }.disposed(by: disposeBag)
+        
+        reactor.state.filter { $0.isOrdered }
+            .bind { [unowned self] _ in
+                self.presentOrderAlert()
             }.disposed(by: disposeBag)
     }
     
@@ -104,6 +114,15 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
                 print(error)
             }
         }
+    }
+    
+    private func presentOrderAlert() {
+        let alertController = UIAlertController(title: "주문", message: "주문하시겠습니까?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "예", style: .default) { _ in }
+        let cancelAction = UIAlertAction(title: "아니오", style: .cancel) { _ in }
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
     }
 }
 
