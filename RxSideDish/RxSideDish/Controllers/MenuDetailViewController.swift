@@ -82,14 +82,14 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
         }
     }
     
-    private func add(url: String, of stackView: UIStackView, contentMode: UIView.ContentMode) {
+    private func add(url: String, of stackView: UIStackView, contentMode: UIView.ContentMode, isThumbnail: Bool) {
         retrieveImage(at: url) {
             let placeholderImageView = UIImageView()
             placeholderImageView.image = $0
             placeholderImageView.contentMode = contentMode
             placeholderImageView.translatesAutoresizingMaskIntoConstraints = false
             placeholderImageView.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
-            placeholderImageView.heightAnchor.constraint(equalTo: placeholderImageView.widthAnchor, multiplier: $0.size.height / $0.size.width).isActive = true
+            !isThumbnail ? placeholderImageView.heightAnchor.constraint(equalTo: placeholderImageView.widthAnchor, multiplier: $0.size.height / $0.size.width).isActive = true : nil
             stackView.addArrangedSubview(placeholderImageView)
         }
     }
@@ -119,6 +119,7 @@ extension MenuDetailViewController {
         deliveryFeeLabel.text = menuDetail?.deliveryFee
         pointLabel.text = menuDetail?.point
         deliveryInfoLabel.text = menuDetail?.deliveryInfo
+        
         if menuDetail?.prices.count == 1 {
             discountedPriceLabel.text = menuDetail?.prices[0]
         } else {
@@ -126,11 +127,11 @@ extension MenuDetailViewController {
             discountedPriceLabel.text = menuDetail?.prices[1]
         }
         menuDetail?.thumbImages.forEach({
-            add(url: $0, of: thumbnailStackView!, contentMode: .scaleAspectFill)
+            add(url: $0, of: thumbnailStackView!, contentMode: .scaleAspectFill, isThumbnail: true)
         })
         
         menuDetail?.detailImages.forEach({
-            add(url: $0, of: detailStackView!, contentMode: .scaleAspectFit)
+            add(url: $0, of: detailStackView!, contentMode: .scaleAspectFit, isThumbnail: false)
         })
     }
     
