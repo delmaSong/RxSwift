@@ -38,7 +38,7 @@ class MenuListViewController: UIViewController, ReactorKit.StoryboardView {
             .bind { [weak self] menuID in
                     guard let menuDetailViewController = self?.storyboard?.instantiateViewController(withIdentifier: String(describing: MenuDetailViewController.self)) as? MenuDetailViewController else { return }
                 self?.navigationController?.pushViewController(menuDetailViewController, animated: true)
-                menuDetailViewController.set(type: self?.typeIndex ?? 0, menuID: menuID ?? "")
+                menuDetailViewController.reactor = MenuDetailReactor(type: self?.typeIndex ?? 0, menuID: menuID ?? "")
             }.disposed(by: disposeBag)
     }
     

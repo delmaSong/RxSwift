@@ -39,7 +39,6 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        reactor = MenuDetailReactor()
         configureUI()
     }
     
@@ -49,7 +48,7 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
     }
     
     func bind(reactor: MenuDetailReactor) {
-        reactor.action.onNext(.presented(type, menuID))
+        reactor.action.onNext(.presented)
         
         orderButton.rx.tap
             .map({
@@ -80,20 +79,6 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
             .bind { [unowned self] _ in
                 self.presentOrderAlert()
             }.disposed(by: disposeBag)
-    }
-    
-    func set(type: Int, menuID: String) {
-        self.menuID = menuID
-        switch type {
-        case 0:
-            self.type = .main
-        case 1:
-            self.type = .soup
-        case 2:
-            self.type = .side
-        default:
-            break
-        }
     }
     
     private func add(url: String, of stackView: UIStackView, contentMode: UIView.ContentMode, isThumbnail: Bool) {

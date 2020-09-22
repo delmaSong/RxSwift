@@ -13,9 +13,21 @@ import ReactorKit
 final class MenuDetailReactor: Reactor {
     var initialState: State = State(isOrdered: false, menuDetail: nil, menuInfo: nil)
     private var useCase = UseCase()
+    private var type: EndPoints?
+    private var menuID: String
+    
+    init(type: Int, menuID: String) {
+        self.menuID = menuID
+        switch type {
+        case 0: self.type = .main
+        case 1: self.type = .soup
+        case 2: self.type = .side
+        default: break
+        }
+    }
     
     enum Action {
-        case presented(EndPoints?, String?)
+        case presented
         case orderButtonDidTapped
     }
     
@@ -32,9 +44,9 @@ final class MenuDetailReactor: Reactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case let .presented(type, menuID):
-            let menuDetailObservable = useCase.fetchMenuDetail(ID: menuID ?? "")
-            let menuInfoObservable = useCase.fetchMenu(type: type ?? EndPoints.main, ID: menuID ?? "")
+        case .presented:
+            let menuDetailObservable = useCase.fetchMenuDetail(ID: menuID)
+            let menuInfoObservable = useCase.fetchMenu(type: type ?? EndPoints.main, ID: menuID)
             return Observable.combineLatest(menuDetailObservable, menuInfoObservable)
                 .map { (menuDetail, menuInfo) -> Mutation in
                     return .fetchDetail((menuDetail, menuInfo))
