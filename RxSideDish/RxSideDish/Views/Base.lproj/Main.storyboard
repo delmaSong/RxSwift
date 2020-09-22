@@ -219,7 +219,7 @@
                                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="배송정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hkw-TS-FLe">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="배송정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hkw-TS-FLe">
                                                         <rect key="frame" x="88" y="160" width="314" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -263,6 +263,7 @@
                                                     <constraint firstItem="taI-dy-2Pt" firstAttribute="top" secondItem="7Cv-pm-B90" secondAttribute="bottom" constant="2" id="acJ-zG-q0c"/>
                                                     <constraint firstItem="I8c-Ji-dFc" firstAttribute="leading" secondItem="Hkw-TS-FLe" secondAttribute="leading" id="c8J-xX-iBK"/>
                                                     <constraint firstItem="U6Q-Xn-J6K" firstAttribute="leading" secondItem="Aid-we-kZO" secondAttribute="leading" constant="12" id="ewQ-z4-Y8A"/>
+                                                    <constraint firstItem="Hkw-TS-FLe" firstAttribute="trailing" secondItem="X0o-WD-reg" secondAttribute="trailing" id="l5L-On-T3M"/>
                                                     <constraint firstItem="O3P-Zj-oxr" firstAttribute="top" secondItem="U6Q-Xn-J6K" secondAttribute="bottom" constant="8" id="mBP-Cy-cb7"/>
                                                     <constraint firstAttribute="trailing" secondItem="X0o-WD-reg" secondAttribute="trailing" constant="16" id="nSy-OU-tkR"/>
                                                     <constraint firstItem="taI-dy-2Pt" firstAttribute="leading" secondItem="7Cv-pm-B90" secondAttribute="leading" id="pZF-wr-WjR"/>
