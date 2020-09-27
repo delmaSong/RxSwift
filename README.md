@@ -25,29 +25,21 @@ RxSwift 스터디를 위한 개인 저장소
 
 
 
-## 계획
+## 구현 사항
 
-### 1주차
+### 기능
 
-**평일**
+- 주 메뉴 - 국물 메뉴 - 반찬 메뉴 순서대로 데이터를 표시한다
+- 썸네일 이미지를 페이지 형식으로 표시한다
+- 메뉴의 상세 정보 및 이미지를 표시한다
 
-[RxSwift 4시간에 끝내기 시즌0](https://www.youtube.com/watch?v=w5Qmie-GbiA&list=PL03rJBlpwTaAh5zfc8KWALc3ADgugJwjq) 내용을 바탕으로 아래의 내용 공부 및 정리
-
-- Reactive Programming을 사용하게된 배경
-- Observable과 Observer, Subject
-- 기본적인 Operator
-
-**주말**
-
-[RxSwift 4시간에 끝내기 시즌2](https://www.youtube.com/watch?v=iHKBNYMWd5I&list=PL03rJBlpwTaBrhux_C8RmtWDI_kZSLvdQ) 내용을 바탕으로 아래의 내용 공부 및 정리
-
-- Scheduler
-- RxCocoa의 bind + 간단하게 사용해보기
-- DataSource 채택하지 않고 ViewModel을 이용해 UITableView에 데이터 바인딩 해보기
+<img width=30% src="./images/menuList.gif"/><img width=30% src="./images/menuDetail.gif"/>
 
 
 
-### 2주차 ~
+<br>
 
-- Rx를 사용하여 SideDish 프로젝트 진행
-- [Mastering RxSwift](https://kxcoding.com/course/mastering-rxswift) 수업 듣고 공부 및 정리(상세 진도는 논의 후 결정)
+### 설계 및 구현
+
+RxSwift와 ReactorKit 학습 목적으로 두가지 다 적용하여 구현함
+
