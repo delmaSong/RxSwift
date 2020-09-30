@@ -15,7 +15,7 @@ import Kingfisher
 
 final class MenuListReactor: Reactor {
     var initialState: State = State(completedDataFetching: false, sectionOfMenu: [], tappedCellID: nil, isCellTapped: false)
-    private var useCase = UseCase()
+    private let useCase = UseCaseProvider.getUseCase()
     
     enum Action {
         case presented

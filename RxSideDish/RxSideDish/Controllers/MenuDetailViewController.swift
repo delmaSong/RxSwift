@@ -16,8 +16,6 @@ final class MenuDetailViewController: UIViewController, ReactorKit.StoryboardVie
     typealias Reactor = MenuDetailReactor
     var disposeBag: DisposeBag = DisposeBag()
     
-    private var menuID: String?
-    private var type: EndPoints?
     private let mainInstance = MainScheduler.instance
     
     @IBOutlet weak var thumbnailScrollView: UIScrollView!

@@ -11,8 +11,6 @@ import RxSwift
 import RxCocoa
 
 class APIService {
-    let bag = DisposeBag()
-    
     func fetch(url: String) -> Observable<Data> {
         return Observable.just(url)
             .map {URL(string: $0)! }

@@ -12,7 +12,7 @@ import ReactorKit
 
 final class MenuDetailReactor: Reactor {
     var initialState: State = State(isOrdered: false, menuDetail: nil, menuInfo: nil)
-    private var useCase = UseCase()
+    private let useCase = UseCaseProvider.getUseCase()
     private var type: EndPoints?
     private var menuID: String
     

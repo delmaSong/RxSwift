@@ -10,7 +10,22 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-struct UseCase {
+class UseCaseProvider {
+    private static let instance: UseCaseProvider = UseCaseProvider()
+    private let useCase: UseCase = UseCaseImpl()
+    
+    static func getUseCase() -> UseCase {
+        return instance.useCase
+    }
+}
+
+protocol UseCase: class {
+    func fetchMenuDetail(ID: String) -> Observable<MenuDetail?>
+    func fetchMenuList(type: EndPoints) -> Observable<[Menu]>
+    func fetchMenu(type: EndPoints, ID: String) -> Observable<Menu?>
+}
+
+final class UseCaseImpl: UseCase {
     let apiService = APIService()
     
     func fetchMenuDetail(ID: String) -> Observable<MenuDetail?> {
